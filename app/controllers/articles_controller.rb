@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
   
-  before_action :set_article, only: [:edit, :update, :show, :destroy]
+  @article.user = User.first
+  
  
   def user
   @article.user = User.first
@@ -11,12 +12,7 @@ class ArticlesController < ApplicationController
   end
   
   def create
-    @article = Article.new(article_params)
-  if @article.save
-   flash[:notice] = "Article was successfully created"
-   redirect_to article_path(@article)
-  else
-   render 'new'
+    @article.user = User.first
   end
 end  
 
@@ -39,10 +35,7 @@ end
   end
  end
  
-  def index
-   @articles = Article.all
-  end
- 
+   
   def destroy
   
    @article.destroy
