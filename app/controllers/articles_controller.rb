@@ -1,7 +1,10 @@
 class ArticlesController < ApplicationController
   
   before_action :set_article, only: [:edit, :update, :show, :destroy]
+ 
+  def user
   @article.user = User.first
+  end
   
   def new
    @article = Article.new
@@ -56,6 +59,7 @@ end
     def article_params
 	 params.require(:article).permit(:title, :description)
 	end
+
 
 end
 
